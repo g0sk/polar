@@ -1,10 +1,10 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import NavigationContainer from './NavigationContainer';
-import OnBoarding from '../screens/onboarding';
+import AuthNavigator from './AuthNavigator';
 
 type RootNavigatorParamList = {
-	login: undefined;
+	authNavigator: undefined;
 	home: undefined;
 	onBoarding: undefined;
 };
@@ -14,7 +14,11 @@ const Stack = createNativeStackNavigator<RootNavigatorParamList>();
 const RootStack = () => {
 	return (
 		<Stack.Navigator>
-			<Stack.Screen name="onBoarding" component={OnBoarding} options={{headerShown: false}} />
+			<Stack.Screen
+				name="authNavigator"
+				component={AuthNavigator}
+				options={{ headerShown: false }}
+			/>
 		</Stack.Navigator>
 	);
 };

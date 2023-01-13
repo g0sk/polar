@@ -5,6 +5,13 @@ module.exports = function (api) {
 		plugins: [
 			['react-native-reanimated/plugin'],
 			[
+				'module:react-native-dotenv',
+				{
+					envName: 'POLAR_ENV',
+					moduleName: '@env',
+				},
+			],
+			[
 				'module-resolver',
 				{
 					root: ['./src'],
