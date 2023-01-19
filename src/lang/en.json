@@ -4,5 +4,12 @@
 			"title": "Welcome to Polar!",
 			"description": "Amazing description btw"
 		}
+	},
+	"actions": {
+		"login": {
+			"signIn": "Sign in",
+			"signUp": "Sign up",
+			"forgotPassWord": "Forgot password"
+		}
 	}
 }

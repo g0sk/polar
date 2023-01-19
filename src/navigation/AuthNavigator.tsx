@@ -1,9 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
 import OnBoarding from '../screens/onboarding';
 import { Login } from 'screens/login';
+import { OnBoardingNavigationProp } from 'screens/onboarding/types';
 
-type LoginNavigatorParamList = {
+export type AuthNavigatorParamList = {
 	onBoarding: undefined;
 	loginHome: undefined;
 	signUp: undefined;
@@ -11,7 +11,7 @@ type LoginNavigatorParamList = {
 	signIn: undefined;
 };
 
-const Stack = createNativeStackNavigator<LoginNavigatorParamList>();
+const Stack = createNativeStackNavigator<AuthNavigatorParamList>();
 
 const AuthNavigator = () => {
 	return (

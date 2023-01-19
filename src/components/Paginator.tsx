@@ -1,5 +1,5 @@
 import { useWindowDimensions } from 'react-native';
-import View from './View';
+import { View } from './View';
 import { type SlideProps } from '../screens/onboarding';
 import Animated, {
 	Extrapolate,

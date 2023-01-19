@@ -1,5 +1,5 @@
 import { TouchableOpacity, View } from 'react-native';
-import Text from './Text';
+import { Text } from './Text';
 import { Theme } from '../theme';
 
 import {
@@ -22,7 +22,13 @@ type RestyleButtonProps = SpacingProps<Theme> &
 
 type Props = RestyleButtonProps & ButtonProps;
 
-const Button = ({ label, disabled = false, onPress, variant = 'default', ...rest }: Props) => {
+export const Button = ({
+	label,
+	disabled = false,
+	onPress,
+	variant = 'default',
+	...rest
+}: Props) => {
 	const textVariant: Partial<keyof Theme['textVariants']> = `button_${variant}`;
 	return (
 		<TouchableOpacity onPress={onPress}>
@@ -32,5 +38,3 @@ const Button = ({ label, disabled = false, onPress, variant = 'default', ...rest
 		</TouchableOpacity>
 	);
 };
-
-export default Button;

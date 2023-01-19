@@ -7,12 +7,12 @@ import {
 	ViewabilityConfigCallbackPair,
 	type ViewToken,
 } from 'react-native';
-import { Screen } from '../../components/Screen';
-import View from '../../components/View';
+
 import SlideItem from './SlideItem';
-import { Paginator } from '../../components/Paginator';
+import { Screen, View, Paginator } from 'components';
 import { useSharedValue } from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
+import { OnBoardingProps } from './types';
 
 type ViewableItems = (info: { viewableItems: ViewToken[]; changed: ViewToken[] }) => void;
 
@@ -23,14 +23,14 @@ export type SlideProps = {
 	image: any;
 };
 
-const OnBoarding = () => {
+const OnBoarding = ({ navigation }: OnBoardingProps) => {
 	const { t } = useTranslation();
 	const { width, height } = useWindowDimensions();
-	const [currentPage, setCurrentPage] = useState<any>(0);
+	const [currentSlide, setCurrentSlide] = useState<any>(0);
 	const scrollX = useSharedValue(0);
 	const flatListRef = useRef<FlatList>(null);
 	const onViewableItemsChanged: ViewableItems = ({ viewableItems }) => {
-		setCurrentPage(viewableItems[0].index);
+		setCurrentSlide(viewableItems[0].index);
 	};
 
 	const viewabilityConfigCallbackPairs = useRef<ViewabilityConfigCallbackPair[]>([
@@ -40,39 +40,21 @@ const OnBoarding = () => {
 	const slides: SlideProps[] = [
 		{
 			id: 0,
-			title: 'Welcome to polar!',
+			title: t('screen.onBoarding.title'),
 			description: 'Polar will help you to organize everything',
-			image: require('../../../assets/images/welcome.png'),
+			image: require('../../../assets/images/start.png'),
 		},
 		{
 			id: 1,
-			title: 'Ideas',
-			description: 'Your ideas should be on paper not floating around yout mind all day',
-			image: require('../../../assets/images/ideas.png'),
+			title: t('screen.onBoarding.title'),
+			description: 'Polar will help you to organize everything',
+			image: require('../../../assets/images/start.png'),
 		},
 		{
-			id: 1,
-			title: 'Ideas',
-			description: 'Your ideas should be on paper not floating around yout mind all day',
-			image: require('../../../assets/images/ideas.png'),
-		},
-		{
-			id: 1,
-			title: 'Ideas',
-			description: 'Your ideas should be on paper not floating around yout mind all day',
-			image: require('../../../assets/images/ideas.png'),
-		},
-		{
-			id: 1,
-			title: 'Ideas',
-			description: 'Your ideas should be on paper not floating around yout mind all day',
-			image: require('../../../assets/images/ideas.png'),
-		},
-		{
-			id: 1,
-			title: 'Ideas',
-			description: 'Your ideas should be on paper not floating around yout mind all day',
-			image: require('../../../assets/images/ideas.png'),
+			id: 2,
+			title: t('screen.onBoarding.title'),
+			description: 'Polar will help you to organize everything',
+			image: require('../../../assets/images/start.png'),
 		},
 	];
 
@@ -83,7 +65,15 @@ const OnBoarding = () => {
 					ref={flatListRef}
 					data={slides}
 					horizontal
-					renderItem={({ item }) => <SlideItem slide={item} />}
+					renderItem={({ item, index }) => (
+						<SlideItem
+							slide={item}
+							slidesLength={slides.length}
+							currentIndex={index}
+							listRef={flatListRef}
+							navigation={navigation}
+						/>
+					)}
 					keyExtractor={(_, index) => index.toString()}
 					showsHorizontalScrollIndicator={false}
 					bounces={false}

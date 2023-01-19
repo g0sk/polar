@@ -3,6 +3,13 @@
 		"onBoarding": {
 			"title": "Bienvenido a Polar!",
 			"description": "Descripción mazo tocha"
+		},
+		"actions": {
+			"login": {
+				"signIn": "Sign in",
+				"signUp": "Sign up",
+				"forgotPassWord": "Forgot password"
+			}
 		}
 	}
 }

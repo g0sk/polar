@@ -4,11 +4,17 @@ import {
 	ThemeProvider as RestyleProvider,
 	TextProps,
 	BorderProps,
+	SpacingProps,
+	LayoutProps,
 } from '@shopify/restyle';
 
 type ThemeType = typeof BaseTheme & {
 	textVariants: { [key: string]: TextProps<typeof BaseTheme> };
-	buttonVariants: { [key: string]: BorderProps<typeof BaseTheme> };
+	buttonVariants: {
+		[key: string]: BorderProps<typeof BaseTheme> &
+			SpacingProps<typeof BaseTheme> &
+			LayoutProps<typeof BaseTheme>;
+	};
 };
 
 const createTheme = <T extends ThemeType>(themeObject: T): T => themeObject;
@@ -76,10 +82,14 @@ const theme = createTheme({
 	...BaseTheme,
 	textVariants: {
 		title: {},
-		button_default: {}
+		button_default: {},
 	},
 	buttonVariants: {
-		default: {},
+		default: {
+			width: 300,
+			height: 85,
+			backgroundColor: 'lightPurple',
+		},
 	},
 	navigation: {
 		dark: false,
@@ -94,7 +104,11 @@ const darkTheme = createTheme({
 		button_default: {},
 	},
 	buttonVariants: {
-		default: {},
+		default: {
+			width: 300,
+			height: 85,
+			backgroundColor: 'lightPurple',
+		},
 	},
 	navigation: {
 		dark: true,
